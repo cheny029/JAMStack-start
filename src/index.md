@@ -1,13 +1,11 @@
 ---
 layout: layout.html
 pageTitle: New York Today
+tags: page
+navTitle: Home
+pageClass: home
 ---
 
 ## Articles
 
-> Quotation
-
-- item a
-- item b
-
-A list of articles will appear here
+<div class="stories">Loading...</div>
