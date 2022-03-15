@@ -1,38 +1,29 @@
-import { getStories, showData } from "./modules/api.js"
+const API = 'https://api.nasa.gov/planetary/apod?api_key=u1GKAbuCHAUPvWLJbpkLFi8RPcQtRftA0HXpGehFhttps://api.nasa.gov/planetary/apod?api_key=u1GKAbuCHAUPvWLJbpkLFi8RPcQtRftA0HXpGehF'
 
-getStories()
-    .then((res) => res.json())
-    .then((data) => showData(data.results));
-    
-/* var API =
-  "https://api.nytimes.com/svc/topstories/v2/nyregion.json?api-key=3gcikugfbEaUToGoEDCWMXp6cljPO9Tw";
 
-getStories();
- function getStories() {
-  fetch(API)
-    .then((response) => response.json())
-    .then((data) => showData(data.results));
-} 
+   
+document.querySelector('form').addEventListener('submit', nasa)
 
-function showData(stories) {
-    var looped = stories
-      .map(
-        (story) => `
-        <div class="item">
-        <picture>
-        <img src="${story.multimedia[2].url}" alt="" />
-        <figcaption>${story.multimedia[2].caption}</figcaption>
-        </picture>
-            <h3><a href="${story.url}">${story.title}</a></h3>
-            <p>${story.abstract}</p>
-        </div>
-        `
-      )
-      .join("");
-  
-    document.querySelector(".stories").innerHTML = looped;
-  } */
-  
-  if (document.querySelector(".home")) {
-    getStories();
-  }
+function nasa(e){
+  e.preventDefault()
+  let date = document.querySelector('input').value
+  console.log(date)
+  fetch(`https://api.nasa.gov/planetary/apod?date=${date}&hd=true&api_key=PX6KQodjwM0QXhS5JSHPYRAp7WyPGe8J2ui06hFi`)
+    .then(res => res.json()) // parse response as JSON (can be res.text() for plain response)
+    .then(response => {
+        console.log(response)
+        document.querySelector('h2').innerText=response.title;
+        if(response.media_type == "image"){
+          document.querySelector('img').src = response.hdurl
+        }else{
+          let iframe=document.querySelector('iframe');
+          iframe.src = response.url
+          iframe.style.display="block"
+        }
+        document.getElementById('description').innerText= response.explanation;
+    })
+    .catch(err => {
+        console.log(`error ${err}`)
+        alert("sorry, there are no results for your search")
+    });
+}

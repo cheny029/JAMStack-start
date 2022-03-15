@@ -1,12 +1,11 @@
 ---
-pageTitle: Contact Us
+pageTitle: Contact
 navTitle: Contact
 ---
 
-<h2>Here's how:</h2>
+<h2>Email:</h2>
+alan.yachen@gmail.com
 
-<ul>
-  <li>917 865 5517</li>
-</ul>
+<h2>Portfolio:</h2>
+https://www.alanchendesign.com/
 
-<a href="/">Home</a>
